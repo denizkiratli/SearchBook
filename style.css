@@ -2,6 +2,23 @@ body{
     background-color: #FFFAFA;
 }
 
-#search{
-    background-color: #FFFAFA;
+.img-div{
+    width: 180px;
+    height: 300px;
+    background-color: darkgray;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-div a:link{
+    color: white;
+}
+
+.cover-img{
+    width: 180px;
+    height: 300px;
+    background-color: darkgray;
+    
 }

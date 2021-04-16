@@ -14,8 +14,6 @@ form.addEventListener('submit', async e => {
     while(books.firstChild)
         books.removeChild(books.lastChild);
     
-    console.log(results);
-    
     showResults(queryInput, results.data.docs);
     form.reset();
 })
@@ -26,7 +24,12 @@ const showResults = (query, results) => {
     
     for(let result of results){
         //Get book's cover
-        const newImgSrc = `https://covers.openlibrary.org/b/olid/${result.cover_edition_key}-M.jpg`;
+        let newImgSrc;
+        //To make visible of img's alt
+        if(result.cover_edition_key === undefined)
+            newImgSrc = '';
+        else
+            newImgSrc = `https://covers.openlibrary.org/b/olid/${result.cover_edition_key}-M.jpg`;
         
         //Create a box
         const div = document.createElement('div');
@@ -35,24 +38,27 @@ const showResults = (query, results) => {
         const newFigure = document.createElement('figure');
         const newCoverLink = document.createElement('a');
         const img = document.createElement('img');
+        img.classList = 'cover-img';
         img.src = newImgSrc;
         img.alt = result.title;
         newCoverLink.append(img);
         newCoverLink.href = `https://openlibrary.org${result.key}`;
         newFigure.append(newCoverLink);
-        div.append(newCoverLink);
-        //books.append(div);
+        //Image's div
+        const imgDiv = document.createElement('div');
+        imgDiv.classList = 'mx-auto img-div';
+        imgDiv.append(newCoverLink);
+        div.append(imgDiv);
         
         //Book's info
         const divInfo = document.createElement('div');
-        //div.classList = 'row';
         const newTitleLink = document.createElement('a');
         newTitleLink.href = `https://openlibrary.org${result.key}`;
         newTitleLink.innerText = result.title;
-        const newP = document.createElement('p');
-        newP.innerText = result.author_name;
+        const newAuthorName = document.createElement('p');
+        newAuthorName.innerText = result.author_name;
         divInfo.append(newTitleLink);
-        divInfo.append(newP);
+        divInfo.append(newAuthorName);
         div.append(divInfo);
         books.append(div);
         
