@@ -1,7 +1,7 @@
 # SearchBook
  
-A book searching app that work in progress.
+A book searching app gives all of the book results what you searched about.
 
 The OpenLibary API used to getting information about books.
 
-In front-end, the Bootstrap is used.
+I developed it for use my knowledge about HTML, CSS, Bootstrap and JavaScript.
